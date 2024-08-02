@@ -1,0 +1,248 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9fa;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Chat Box Styles */
+  .chat-box {
+    max-height: 400px;
+    overflow-y: scroll;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+  }
+  
+  .message {
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    word-wrap: break-word; /* Added to wrap long messages */
+    background-color: #1ebea5;
+    width: fit-content;
+  }
+
+  .message.sender {
+    background-color: #1ebea5;
+    color: #000;
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+  }
+
+  .sender-name{
+    color: white;
+  }
+
+  .status {
+    background-color: transparent;
+    text-align: center;
+    clear: both;
+    font-style: italic;
+    color: #9b9b9b;
+  }
+  
+  
+  /* Input Box Styles */
+  .input-box {
+    margin-top: 10px;
+  }
+  
+  input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 10px;
+    margin-left: 10px;
+    background-color: transparent;
+    border: none;
+    color: #cac7c7;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s linear;
+  }
+  
+  button:hover {
+    color: #fff;
+  }
+  
+  .leave-room {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: #48b0f7;
+    text-decoration: none;
+  }
+  
+  .leave-room:hover {
+    text-decoration: underline;
+  }
+  
+  /* Profile Picture Styles */
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #f5f6f7;
+    color: #8b95a5;
+    text-transform: uppercase;
+    line-height: 36px;
+    text-align: center;
+  }
+  
+  /* Card Styles */
+  .card {
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
+    transition: 0.5s;
+  }
+  
+  .card-bordered {
+    border: 1px solid #ebebeb;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(77, 82, 89, 0.07);
+  }
+  .card-header a {
+    text-decoration: none;
+    font-size: 22px;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  .card-title {
+    font-size: 17px;
+    padding: 0;
+    border: none;
+  }
+  
+  .btn-secondary {
+    background-color: #e4e7ea;
+    border-color: #1ebea5;
+    color: #fff;
+  }
+  
+  .btn-xs {
+    font-size: 11px;
+    padding: 2px 8px;
+    line-height: 18px;
+  }
+  
+  /* Scrollbar Styles */
+  .ps-container {
+    position: relative;
+  }
+  
+  .ps-container,
+  .ps-scrollbar-x-rail,
+  .ps-scrollbar-y-rail {
+    overflow: hidden !important;
+  }
+  
+  .ps-scrollbar-x-rail,
+  .ps-scrollbar-y-rail {
+    position: absolute;
+    opacity: 0.6;
+    z-index: 9999;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+  }
+  
+  .ps-scrollbar-x,
+  .ps-scrollbar-y {
+    position: absolute;
+    border-radius: 5px;
+  }
+  
+  .ps-scrollbar-x {
+    height: 8px;
+    bottom: 2px;
+  }
+  
+  .ps-scrollbar-y {
+    width: 8px;
+    right: 2px;
+  }
+  
+  /* Publisher Styles */
+  .publisher {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: #f9fafb;
+  }
+  
+  .publisher-input {
+    flex: 1;
+    border: none;
+    outline: none !important;
+    background-color: transparent;
+  }
+  
+  .file-group {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .publisher-btn {
+    background-color: transparent;
+    border: none;
+    color: #cac7c7;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s linear;
+    margin: 5px;
+  }
+  
+  .publisher-btn:hover {
+    color: #fff;
+  }
+  
+  .text-info {
+    color: #1ebea5 !important;
+  }
+  .input-field {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-field .publisher-input {
+    flex: 1;
+}
+.clear{
+  text-align: center;
+  background-color: #f9f9fa;
+  padding: 5px;
+  margin: 5px;
+}
+.clear a {
+  display: inline-block;
+  background-color: #dc3545; 
+  color: white; 
+  padding: 5px 10px; 
+  text-decoration: none;
+  margin: 0 auto;
+}

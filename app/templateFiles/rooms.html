@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rooms</title>
+</head>
+    <body>
+        {% for room in rooms %}
+        <p>Room Name: {{ room.room_name }}</p>
+        <p>Room ID: {{ room.room_id }}</p>
+        <hr>
+        {% endfor %}
+        {% for user in users %}
+        <p>Username: {{ user.username }}</p>
+        <p>password: {{ user.password }}</p>
+        <hr>
+        {% endfor %}
+        {% for message in messages %}
+        <p>{{message.room_id }}: {{ message.content}}</p>
+        <hr>
+        {% endfor %}
+    </body>
+</html>

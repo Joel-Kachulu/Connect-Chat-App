@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="{{ url_for('static', filename='fontawesome/css/all.css') }}" rel="stylesheet">
+  <title>Connect Home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      width: 500px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+      padding: 16px;
+      border-bottom: 1px solid #dddfe2;
+    }
+
+    .card-header h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .card-content {
+      padding: 16px;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #dddfe2;
+    }
+
+    .profile-picture {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 16px;
+      border: 2px solid #1ebea5;
+    }
+
+    .profile-picture img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-details {
+      flex-grow: 1;
+    }
+
+    .profile-details p {
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+    }
+
+    .button-container a {
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      border-radius: 4px;
+      font-weight: bold;
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .button.primary {
+      background-color: #42b72a;
+    }
+
+    .button.secondary {
+      background-color: #1ebea5;
+    }
+
+    .button i {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h1>Connect<i class="fa-solid fa-link" style="color: #1ebea5;"></i></h1>
+      </div>
+      <div class="card-content">
+        <div class="profile">
+          <div class="profile-picture">
+            {% if profile_picture %}
+              <img src="{{ profile_picture }}" alt="profile-pic">
+            {% else %}
+            <img src="{{ url_for('static', filename='images/prof.jpg') }}" alt="Default Profile Picture">
+            {% endif %}
+          </div>
+          <div class="profile-details">
+            <p>{{ user.username }}</p>
+          </div>
+        </div>
+        <div class="button-container">
+          <a href="{{ url_for('main.edit_profile') }}" class="button secondary">
+            <i class="fas fa-pencil-alt"></i>Edit Profile
+          </a>
+          <a href="{{ url_for('main.profile') }}" class="button secondary">
+            <i class="fas fa-user"></i>View Profile
+          </a>
+          <a href="{{ url_for('.create') }}" class="button secondary">
+            <i class="fas fa-plus-circle"></i>Create Room
+          </a>
+          <a href="{{ url_for('.join') }}" class="button primary">
+            <i class="fas fa-door-open"></i>Join Room
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

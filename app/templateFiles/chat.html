@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/staticFiles/chat.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fontawesome/css/all.css') }}">
+    <title>Connect-Chat: {{ room }}</title>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="//cdn.socket.io/4.4.1/socket.io.min.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/emoji-picker-element@4.2.1/dist/emoji-picker-element.js"></script>-->
+    <script type="text/javascript" charset="utf-8">
+        var socket;
+        $(document).ready(function(){
+            socket = io.connect('http://192.168.43.144:5000/chat');
+            socket.on('connect', function() {
+                socket.emit('joined', {});
+            });
+            socket.on('status', function(data) {
+                appendMessage('<' + data.msg + '>', 'status');
+            });
+            socket.on('message', function(data) {
+                // Append the message to the chat container with the appropriate classNameS
+                appendMessage(data.msg, data.sender === 'me' ? 'sender' : 'receiver');
+            });
+            $('#text').keypress(function(e) {
+                var code = e.keyCode || e.which;
+                if (code == 13) {
+                    sendMessage();
+                }
+            });
+            $('#send-button').click(function() {
+                sendMessage();
+            });
+        });
+
+        function appendMessage(message, className) {
+            var chatContainer = $('#chat');
+            var messageElement = $('<div>').addClass('message').addClass(className).text(message);
+
+            //If the message is from the sender, add the 'sender' class
+            if (className === 'sender'){
+                messageElement.addClass('sender')
+                messageElement.text(message);
+            }
+            else {
+                messageElement.addClass('receiver');
+                messageElement.text(message);
+            }
+            chatContainer.append(messageElement);
+            chatContainer.scrollTop(chatContainer[0].scrollHeight);
+        }
+        
+        //function to send message through socketIo
+        function sendMessage() {
+            var text = $('#text').val();
+            $('#text').val('');
+            socket.emit('text', {msg: text});
+        }
+
+        
+
+        function leave_room() {
+            socket.emit('left', {}, function() {
+                socket.disconnect();
+
+                // go back to the login page
+                window.location.href = "{{ url_for('main.options') }}";
+            });
+        }
+        // Initialize the emoji picker
+        const emojiPicker = new EmojiPickerElement();
+        const inputField = document.getElementById('text');
+        const emojiButton = document.querySelector('[data-emoji-picker]');
+    
+        emojiButton.addEventListener('click', () => {
+            emojiPicker.showPicker(inputField);
+        });
+
+        // Function to clear the chats in the box
+        function clearChatBox(){
+            $('#chat').empty();
+        }
+
+    </script>
+
+</head>
+<body>
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+                <div class="col-md-6">
+                    <div class="card card-bordered">
+                        <div class="card-header">
+                            <h4 class="card-title"><strong>{{room_name}} Room</strong></h4>
+                            <a class="btn btn-xs btn-secondary" href="#" data-abc="true">Connect<i class="fa-solid fa-link" style="color: #1ebea5;"></i></a>
+                        </div>
+                        <div class="ps-container ps-theme-default ps-active-y" id="chat-content">
+                            <div class="chat-box" id="chat">
+                                <!-- Existing chat messages go here -->
+                                {% for message in messages %}
+                                <div class="message {% if message.user_id == current_user.id %}sender{% else %}receiver{% endif %}">
+                                    {% if message.user_id == current_user.id %}
+                                    <span class="sender-name">You:</span>
+                                    {% else %}
+                                    <span class="sender-name">{{ message.user.username }}:</span>
+                                    {% endif %}
+                                    {{ message.content }}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            
+                        </div>
+                        <div class="publisher bt-1 border-light">
+                            <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
+                            <div class="input-field">
+                                <input class="publisher-input" type="text" id="text" placeholder="Write something">
+                                <a class="publisher-btn" href="#" data-abc="true" data-emoji-picker>😀</a>
+                                <a class="publisher-btn text-info" href="#" data-abc="true" id="send-button"><i class="fa fa-paper-plane"></i></a>
+                            </div>
+                        </div>
+                        <div class="clear">
+                           <a class="btn btn-xs btn-danger" href="#" data-abc="true" onclick="clearChatBox()">Clear Chats</a>
+                           <a class="btn btn-xs btn-danger" href="#" onclick="leave_room()">Leave Room</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>join room</title>
+    </head>
+    <body>
+        <h1>Connect</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.room_name.label }}: {{ form.room_name() }} {% for error in form.room_name.errors %}{{ error }}{% endfor %}<br>
+            {{ form.room_id.label }}: {{ form.room_id() }} {% for error in form.room_id.errors %}{{ error }}{% endfor %}<br>
+            {{ form.submit() }}
+        </form>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect Signup</title>
+  <link rel="stylesheet" type="text/css" href="/staticFiles/signup.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link href="{{ url_for('static', filename='fontawesome/css/all.css') }}" rel="stylesheet">
+  <style>
+    .container {
+      max-width: 400px; /* Set a custom width for the container */
+      margin: 0 auto; /* Center the container horizontally */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="text-center mb-4">Connect<i class="fa-solid fa-link" style="color: #000;"></i> Signup</h2>
+    <form method="POST" action="{{ url_for('main.signup') }}">
+      {{ form.csrf_token }}
+      {% if message %}
+      <div class="alert alert-danger mt-3" role="alert">
+          {{ message }}
+      </div>
+      {% endif %}
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+    </form>
+    <p class="text-center mt-3">Already have an account? <a href="{{ url_for('main.login') }}">Please Login</a></p>
+  </div>
+</body>
+</html>

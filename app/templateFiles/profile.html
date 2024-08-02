@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--<link href="/staticFiles/fontawesome/css/all.css" rel="stylesheet">-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color:#000;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 5px solid #1ebea5;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-details {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+
+        .profile-details p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .but a {
+            display: inline-block;
+            background-color: #1ebea5;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .but :hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{user.username}}</h1>
+        <img src="{{ url_for('static', filename='profile_pics/' + user.profile_picture) if user.profile_picture else url_for('static', filename='profile_pics/prof.jpg') }}">
+        <div class="profile-details">
+            <p><strong>Name:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Age:</strong> {{ user.age }}</p>
+            <p><strong>Gender:</strong> {{ user.gender }}</p>
+            <p><strong>Birthdate:</strong> {{ user.birthdate.strftime('%Y-%m-%d') if user.birthdate }}</p>
+        </div>
+        <div class="but">
+            <a href="{{ url_for('main.options') }}">Back</a> 
+            <a href="{{ url_for('main.edit_profile')}}">Edit Profile</a>
+        </div>
+    </div>
+</body>
+</html>

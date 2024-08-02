@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='edit_profile.css') }}">
+    <link rel="stylesheet" type="text/css" href="/staticFiles/edit_profile.css">
+    <!--<link href="/staticFiles/fontawesome/css/all.css" rel="stylesheet">-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fontawesome/css/all.css') }}">
+  </head>
+  <body>
+    <h1>Edit Profile</h1>
+    <form action="/edit_profile" method="POST" enctype="multipart/form-data">
+      Select Profile Photo: <input type="file" name="profile_picture">
+      <br><br>
+      <label for="name">Name:</label>
+      <input type="text" name="name" value="{{ user.name }}"><br>
+      <label for="username">Username:</label>
+      <input type="text" name="username" value="{{ user.username }}"><br>
+      <label for="email">Email:</label>
+      <input type="email" name="email" value="{{ user.email }}"><br>
+      <label for="age">Age:</label>
+      <input type="number" name="age" value="{{ user.age }}"><br>
+      <label for="gender">Gender:</label>
+      <select name="gender">
+        <option value="male" {% if user.gender == 'male' %}selected{% endif %}>Male</option>
+        <option value="female" {% if user.gender == 'female' %}selected{% endif %}>Female</option>
+        <option value="other" {% if user.gender == 'other' %}selected{% endif %}>Other</option>
+      </select><br>
+      <label for="birthdate">Birthdate:</label>
+      <input type="date" name="birthdate" {% if user.birthdate %}value="{{ user.birthdate.strftime('%Y-%m-%d') }}"{% endif %}><br>
+      <input type="submit" value="Update Profile">
+    </form>
+  </body>
+</html>

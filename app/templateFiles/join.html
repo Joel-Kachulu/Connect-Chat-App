@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>Connect-Chat</title>
+    <link rel="stylesheet" type="text/css" href="/staticFiles/j&c.css">
+    <link href="{{ url_for('static', filename='fontawesome/css/all.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Join A Room</h1>
+        <form method="POST" action="{{ url_for('main.join') }}">
+          {{ form.csrf_token }}
+          {% if message %}
+             <div class="alert alert-danger mt-3" role="alert">
+          {{ message }}
+             </div>
+          {% endif %}
+          <div class="form-group">
+            <label for="room_name">Room Name</label>
+            <input type="text" class="form-control" id="room_name" name="room_name" required>
+          </div>
+          <div class="form-group">
+            <label for="room_id">Room ID</label>
+            <input type="password" class="form-control" id="room_id" name="room_id" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Join Room</button>
+        </form>
+    </div>
+</body>
+</html>
