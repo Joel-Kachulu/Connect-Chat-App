@@ -8,5 +8,5 @@ app = create_app(debug=True, host='0.0.0.0')
 #    db.create_all()
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=5000)
-    socketio.run(app, host='192.168.43.144', port=5000)
+    socketio.run(app, host='0.0.0.0', port=3000)
+    socketio.run(app, host='192.168.126.2', port=3000)
